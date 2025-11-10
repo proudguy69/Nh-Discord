@@ -49,8 +49,8 @@ def authorize():
     session_token = create_session_token(user_id)
     store_auth(user_id, exchange_info, session_token)
     print(session_token)
-    response = redirect("http://localhost:3000/")
-    response.set_cookie("session", session_token, domain="http://localhost:3000")
+    response = redirect("https:nhdiscord.com")
+    response.set_cookie("session", session_token, domain=".nhdiscord.com")
     return response
 
 @app.route('/get/user')
