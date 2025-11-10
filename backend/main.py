@@ -3,6 +3,8 @@ from settings import secret, CLIENT_ID, CLIENT_SECRET
 from database import store_auth
 import jwt, time
 import requests
+from flask_cors import CORS
+
 
 
 def create_session_token(user_id:int):
@@ -32,6 +34,8 @@ def discord_exchange(exchange_code:str):
 
 app = Flask(__name__)
 
+CORS(app, supports_credentials=True, origins=["https://nhdiscord.com"])
+
 @app.route('/')
 def index():
     return "welcome to the api!"
@@ -49,8 +53,8 @@ def authorize():
     session_token = create_session_token(user_id)
     store_auth(user_id, exchange_info, session_token)
     print(session_token)
-    response = redirect("https:nhdiscord.com")
-    response.set_cookie("session", session_token, domain=".nhdiscord.com")
+    response = redirect("nhdiscord.com")
+    response.set_cookie("session", session_token)
     return response
 
 @app.route('/get/user')
