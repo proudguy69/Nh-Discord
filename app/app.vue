@@ -15,8 +15,7 @@
 
 <script setup>
 
-const authentication_uri = "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=https%3A%2F%2Fapi.nhdiscord.com%2Fauthorize&scope=identify+guilds.join+email"
-
+const authentication_uri = "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=http%3A%2F%2Fapi.nhdiscord.com%2Fauthorize&scope=identify+email+guilds.join"
 
 const items = [
   {
@@ -26,8 +25,6 @@ const items = [
   }
 ]
 
-fetch("https://api.nhdiscord.com/get/user")
-
-
+fetch("/api/get/user")
 
 </script>

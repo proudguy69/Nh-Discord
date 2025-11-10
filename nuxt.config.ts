@@ -21,5 +21,10 @@ export default defineNuxtConfig({
   site: {
     url: "https://nhdiscord.com",
     name: "New Hampshire Discord"
+  },
+  nitro: {
+    devProxy: {
+      '/api/': "https://api.nhdiscord.com"
+    }
   }
 })
