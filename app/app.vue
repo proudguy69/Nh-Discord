@@ -22,7 +22,7 @@ const uris = {
   prod: "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=https%3A%2F%2Fnhdiscord.com%2Fauthorize&scope=identify+guilds.join+email"
 }
 
-const authentication_uri = uris.dev
+const authentication_uri = uris.prod
 const user_info = ref({})
 
 provide("user_info", user_info)
