@@ -43,7 +43,7 @@ const servers = ref([
         ],
         button: {
             label: "Join",
-            to: "https://discord.gg/tM6xn3XWkN"
+            to: "/dating/entry"
         }
     },
     {
