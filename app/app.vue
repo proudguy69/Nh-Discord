@@ -21,9 +21,11 @@ const uris = {
   dev: "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize&scope=identify+guilds.join+email",
   prod: "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=https%3A%2F%2Fnhdiscord.com%2Fauthorize&scope=identify+guilds.join+email"
 }
-
+// dont forget to set it in authorize/index.vue
+// dont forget to set it in main.py aswell
 const authentication_uri = uris.prod
-const user_info = ref({})
+const user_info = ref({
+})
 
 provide("user_info", user_info)
 
@@ -38,6 +40,19 @@ const items = [
   }
 ]
 
-fetch("/api/get/user")
+onMounted(async () => {
+  // verify user is authenticated
+  const avatar = localStorage.getItem("avatar")
+  if (avatar) {
+    user_info.value.avatar = avatar
+    user_info.value.id = localStorage.getItem("user_id")
+    return
+  }
+  // get from token if token is set
+  const token = localStorage.getItem("token")
+  // make api call
+  
+})
+
 
 </script>

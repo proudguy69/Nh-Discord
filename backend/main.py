@@ -5,15 +5,12 @@ import jwt, time
 import requests
 from flask_cors import CORS
 
+uris = {
+    "dev": "http://localhost:3000",
+    "prod": "https://nhdiscord.com"
+}
 
-
-def create_session_token(user_id:int):
-    payload = {
-        "user_id": user_id,
-        "initiated_at": int(time.time()),
-        "expires": int(time.time()) + 60*60*24*7
-    }
-    return jwt.encode(payload, secret, algorithm="HS256")
+current_uri = uris.get('prod')
 
 def get_user(access_token):
     headers = {'Authorization': f'Bearer {access_token}'}
@@ -26,7 +23,7 @@ def discord_exchange(exchange_code:str):
         'client_secret': CLIENT_SECRET,
         'grant_type': 'authorization_code',
         'code': exchange_code,
-        'redirect_uri': "https://api.nhdiscord.com/authorize"
+        'redirect_uri': f"{current_uri}/authorize"
     }
     response = requests.post('https://discord.com/api/v10/oauth2/token', data=data)
     return response.json()
@@ -34,32 +31,38 @@ def discord_exchange(exchange_code:str):
 
 app = Flask(__name__)
 
-CORS(app, supports_credentials=True, origins=["https://nhdiscord.com"])
+CORS(app)
 
 @app.route('/')
 def index():
     return "welcome to the api!"
 
 
-@app.route('/authorize')
+@app.route('/authorize', methods=["POST"])
 def authorize():
+    print("Call made!")
     authorization_code = request.args.get('code')
     if not authorization_code:
-        return jsonify({"status": "failed", "message":"No code provided in uri"})
+        return jsonify({"success": False, "message":"No code provided in uri"})
     exchange_info:dict = discord_exchange(authorization_code)
+    error = exchange_info.get('error')
+    if error:
+        return jsonify({"success": False, "message":exchange_info.get("error_description")})
     access_token = exchange_info.get('access_token')
     user_info:dict = get_user(access_token)
     user_id = user_info.get('id')
-    session_token = create_session_token(user_id)
-    store_auth(user_id, exchange_info, session_token)
-    print(session_token)
-    response = redirect("nhdiscord.com")
-    response.set_cookie("session", session_token)
+    database_id = store_auth(user_id, exchange_info)
+
+    response = jsonify({
+        "success": True,
+        "user_info": user_info,
+        "token": str(database_id)
+    })
     return response
 
-@app.route('/get/user')
+@app.route('/authorize/get')
 def api_get_user():
-    print(request.cookies)
+    auth_token = request.args.get('token')
     return jsonify({"success": True})
 
 app.run(debug=True)
