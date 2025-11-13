@@ -10,7 +10,7 @@ uris = {
     "prod": "https://nhdiscord.com"
 }
 
-current_uri = uris.get('prod')
+current_uri = uris.get('dev')
 
 def get_user(access_token):
     headers = {'Authorization': f'Bearer {access_token}'}
@@ -31,7 +31,7 @@ def discord_exchange(exchange_code:str):
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, supports_credentials=True)
 
 @app.route('/')
 def index():
