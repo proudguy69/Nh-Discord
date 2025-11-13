@@ -31,6 +31,7 @@ provide("user_info", user_info)
 
 function logout() {
   user_info.value = {}
+  localStorage.clear()
 }
 
 const items = [
