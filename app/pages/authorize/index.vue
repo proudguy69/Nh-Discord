@@ -1,0 +1,48 @@
+<template>
+    if you see thus page please wait while you are being redirected
+    <br>
+    data = {{ data }}
+</template>
+
+<script setup>
+
+const route = useRoute()
+const router = useRouter()
+
+const user_info = inject("user_info")
+
+let data = ref({})
+
+const uris = {
+    dev: "http://localhost:5000",
+    prod: "https://api.nhdiscord.com"
+}
+
+const current_uri = uris.prod
+
+onMounted(async () => {
+    const code = route.query.code
+    if (!code) {
+        router.push('/')
+    } else {
+        const response = await fetch(`${current_uri}/authorize?code=${code}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"}
+        })
+        data.value = await response.json()
+        if (!data.value.success) {
+            console.log("Failed!")
+            return
+        }
+        user_info.value = data.value.user_info
+
+        localStorage.setItem("token", data.value.token)
+        localStorage.setItem("avatar", data.value.user_info.avatar)
+        localStorage.setItem("user_id", data.value.user_info.id)
+
+    }
+})
+
+
+
+</script>
