@@ -36,11 +36,50 @@
         headline="Start here"
         >
             <UEmpty
+            v-if="false"
             title="Still under development"
             description="This section is still under development, please be paitent while we work on this"
             icon="i-lucide-file"
             variant="subtle"
             />
+            <UPageCard
+            v-if="true"
+            variant="subtle"
+            >
+            <UForm class="flex flex-col gap-1" @submit="submit">
+                <UFormField label="Name">
+                    <UFieldGroup orientation="vertical" class="w-full" >
+                        <UInput placeholder="First"/>
+                        <UInput placeholder="Last"/>
+                    </UFieldGroup>
+                </UFormField>
+
+                <UFormField label="Date of birth" class="w-full">
+                    <UFieldGroup>
+                        <UInput class="w-11" placeholder="mm"/>
+                        <UInput class="w-11" placeholder="dd"/>
+                        <UInput class="w-13" placeholder="yyyy"/>
+                    </UFieldGroup>
+                </UFormField>
+
+                <UFormField label="Residential Address" class="w-full">
+                    <UFieldGroup orientation="vertical">
+                        <UInput placeholder="308 Negra Arroyo Lane" />
+                        <UInput placeholder="Albuquerque"/>
+                        <UInput placeholder="NM"/>
+                        <UInput placeholder="87104"/>
+                    </UFieldGroup>
+                </UFormField>
+
+                <UFormField label="Upload a selfie" help="This is to verify authenticity, you will see this selfie when you enter the server and verify your identiy with the staff" class="w-full">
+                    <UFileUpload variant="button" />
+                </UFormField>
+                
+                <UButton class="w-full text-center" icon="i-lucide-arrow-right" variant="solid" label="Join" type="submit" :loading="load_join"/>
+                
+            </UForm>
+
+            </UPageCard>
         </UPageSection>
     </UPage>
     
@@ -55,6 +94,8 @@ const description = "Join early, help shape it, and be part of something that ac
 const authentication_uri = inject('authentication_uri')
 const user_info = inject("user_info")
 
+const load_join = ref(false)
+
 const links = ref([
     {
         label: "Login with discord",
@@ -65,5 +106,9 @@ const links = ref([
 
     }
 ])
+
+function submit() {
+    load_join.value = true
+}
 
 </script>
