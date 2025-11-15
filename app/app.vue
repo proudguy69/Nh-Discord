@@ -23,7 +23,11 @@ const uris = {
 }
 // dont forget to set it in authorize/index.vue
 // dont forget to set it in main.py aswell
+<<<<<<< HEAD
 const authentication_uri = uris.dev
+=======
+const authentication_uri = uris.prod
+>>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
 provide("authentication_uri", authentication_uri)
 const user_info = ref({
 })
