@@ -18,7 +18,7 @@ const uris = {
     prod: "https://api.nhdiscord.com"
 }
 
-const current_uri = uris.dev
+const current_uri = uris.prod
 
 onMounted(async () => {
     const code = route.query.code

@@ -5,7 +5,7 @@
     orientation="horizontal"
     >
 
-        <img src="https://cdn.discordapp.com/attachments/1272285987203973135/1437461723010433215/image.png?ex=6913540d&is=6912028d&hm=b29cb85375e86b3508e3de40f87a001a8e6fc057b3b93e76874fc1fb13f55351"/>
+        <img src="~/assets/images/hero.png"/>
     </UPageHero>
     
     

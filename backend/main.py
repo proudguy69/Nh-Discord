@@ -10,7 +10,7 @@ uris = {
     "prod": "https://nhdiscord.com"
 }
 
-current_uri = uris.get('dev')
+current_uri = uris.get('prod')
 
 def get_user(access_token):
     headers = {'Authorization': f'Bearer {access_token}'}
