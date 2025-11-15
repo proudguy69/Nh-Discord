@@ -18,11 +18,7 @@ const uris = {
     prod: "https://api.nhdiscord.com"
 }
 
-<<<<<<< HEAD
 const current_uri = uris.dev
-=======
-const current_uri = uris.prod
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
 
 onMounted(async () => {
     const code = route.query.code
@@ -43,11 +39,6 @@ onMounted(async () => {
         localStorage.setItem("token", data.value.token)
         localStorage.setItem("avatar", data.value.user_info.avatar)
         localStorage.setItem("user_id", data.value.user_info.id)
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
         router.push('/')
     }
 })
