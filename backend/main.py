@@ -45,6 +45,7 @@ def authorize():
     if not authorization_code:
         return jsonify({"success": False, "message":"No code provided in uri"})
     exchange_info:dict = discord_exchange(authorization_code)
+    print(exchange_info)
     error = exchange_info.get('error')
     if error:
         return jsonify({"success": False, "message":exchange_info.get("error_description")})
