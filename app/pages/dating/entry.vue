@@ -36,16 +36,12 @@
         headline="Start here"
         >
             <UEmpty
-<<<<<<< HEAD
             v-if="false"
-=======
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
             title="Still under development"
             description="This section is still under development, please be paitent while we work on this"
             icon="i-lucide-file"
             variant="subtle"
             />
-<<<<<<< HEAD
             <UPageCard
             v-if="true"
             variant="subtle"
@@ -84,8 +80,6 @@
             </UForm>
 
             </UPageCard>
-=======
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
         </UPageSection>
     </UPage>
     
@@ -100,11 +94,8 @@ const description = "Join early, help shape it, and be part of something that ac
 const authentication_uri = inject('authentication_uri')
 const user_info = inject("user_info")
 
-<<<<<<< HEAD
 const load_join = ref(false)
 
-=======
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
 const links = ref([
     {
         label: "Login with discord",
@@ -116,11 +107,8 @@ const links = ref([
     }
 ])
 
-<<<<<<< HEAD
 function submit() {
     load_join.value = true
 }
 
-=======
->>>>>>> eddf04216a9f785a75ea9d080a04e7900ab38c32
 </script>
