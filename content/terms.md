@@ -3,35 +3,36 @@ title: Terms of Service
 description: Terms of Service for NH Discord Website and Dating Platform
 ---
 
-# Terms of Service
-**Last Updated: [DATE]**
-
 ## 1. Agreement to Terms
-By accessing or using **[SITE NAME]**, the NH Discord website, or any associated dating or community features, you agree to be bound by these Terms of Service (“Terms”). If you do not agree, you may not use the website or the related Discord server (“the Server”).
+By accessing or using nhdiscord.com, the discord server, or any associated dating or community features, you agree to be bound by these Terms of Service (“Terms”). If you do not agree, you may not use the website or the related Discord server (“the community Server”).
 
 ---
 
 ## 2. Eligibility
 
 ### 2.1 Minimum Age  
-You must be **13 years or older** to use the website or join the Server.
+You must be **13 years or older** to use the website or join the community server
 
 ### 2.2 Minors (13–17)  
 Minors may:
-- Access general community features  
+- Access there own dedicated community for 13-17
 - Participate in age-appropriate sections  
 
 Minors may **not**:
 - Access dating features  
 - Engage in romantic interactions  
 - Share personal contact information  
-- Participate in adult or NSFW discussions  
+- Participate in adult or NSFW discussions
 
-Any attempt by adults to engage minors romantically results in immediate removal.
+Any attempt by adults to engage minors romantically results in immediate removal and legal action.
 
 ### 2.3 Adults (18+)  
-Adults may access general features and dating systems.  
-Misrepresenting age is prohibited.
+Adults may:
+- Access general features and dating systems.
+
+Adults may **not**:
+- Access the minors server
+- Impersonate a minor
 
 ---
 
@@ -60,12 +61,13 @@ By authenticating with Discord, you authorize access to:
 - Discord ID  
 - Avatar  
 - Server membership status  
-- OAuth scopes you explicitly grant  
+- OAuth2 scopes you explicitly grant  
 
-We **do not** access messages or DM history.
+We **do not** access messages or DM history. (yet)
 
 ### 4.2 Server Join  
-Automatic join actions occur **only** with explicit authorization.
+You will automatically join the servers you request to join when applicable
+There may be a delay in joining
 
 ---
 
@@ -73,6 +75,7 @@ Automatic join actions occur **only** with explicit authorization.
 
 ### 5.1 Age Restriction  
 Dating features are strictly for users **18 or older**.
+Dating features do undergo age verifcation.
 
 ### 5.2 User Responsibilities  
 Users may not:
@@ -82,7 +85,7 @@ Users may not:
 - Engage in harassment  
 - Use the platform for solicitation  
 
-We may ban users who violate safety expectations.
+We may ban users who violate safety expectations, or take further action if neccessary.
 
 ---
 
@@ -100,7 +103,7 @@ We may suspend or terminate accounts or restrict features to protect user safety
 
 ## 8. Disclaimers
 The website is provided **“as-is.”** We do not guarantee:
-- Match outcomes  
+- Match outcomes (We don't do any kind of matching)
 - Continuous uptime  
 - Accuracy of user profiles  
 
@@ -121,4 +124,3 @@ Your sole remedy is to discontinue use of the platform.
 
 ## 10. Changes to Terms
 We may update these Terms at any time. Continued use after changes constitutes acceptance.
-

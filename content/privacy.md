@@ -3,10 +3,8 @@ title: Privacy Policy
 description: Privacy Policy for NH Discord Website and Dating Platform
 ---
 
-# Privacy Policy
-
 ## 1. Overview
-This Privacy Policy explains how **[SITE NAME]** (“we,” “our”) collects, uses, and protects your information when you use our website or associated Discord services.
+This Privacy Policy explains how nhdiscord.com (“we,” “our”) collects, uses, and protects your information when you use our website or associated Discord services.
 
 ---
 

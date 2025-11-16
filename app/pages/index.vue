@@ -13,9 +13,11 @@
         <UPricingPlans :plans="servers"/>
     </UPageSection>
     
+
 </template>
 
 <script setup>
+
     
 const servers = ref([
     {
