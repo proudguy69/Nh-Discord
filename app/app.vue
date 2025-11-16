@@ -46,6 +46,10 @@ const items = [
   {
     label: "about",
     to: '/about'
+  },
+  {
+    label: "Terms/Privacy",
+    to: '/policy'
   }
 ]
 
