@@ -27,8 +27,8 @@ const api_uri = {
 }
 
 // dont forget to set it in main.py aswell
-const authentication_uri = auth_uris.dev
-const current_api = api_uri.dev
+const authentication_uri = auth_uris.prod
+const current_api = api_uri.prod
 
 provide("api_uri", current_api)
 provide("authentication_uri", authentication_uri)

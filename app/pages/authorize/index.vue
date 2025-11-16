@@ -1,7 +1,5 @@
 <template>
-    if you see thus page please wait while you are being redirected
-    <br>
-    data = {{ data }}
+    <UPageHero title="You are being redirected" description="Do not leave this page, let it leave for you"/>
 </template>
 
 <script setup>
@@ -27,6 +25,7 @@ onMounted(async () => {
         data.value = await response.json()
         if (!data.value.success) {
             console.log("Failed!")
+            router.push('/')
             return
         }
         user_info.value = data.value.user_info
