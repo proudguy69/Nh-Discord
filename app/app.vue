@@ -17,13 +17,20 @@
 
 <script setup>
 
-const uris = {
+const auth_uris = {
   dev: "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize&scope=identify+guilds.join+email",
   prod: "https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=https%3A%2F%2Fnhdiscord.com%2Fauthorize&scope=identify+guilds.join+email"
 }
-// dont forget to set it in authorize/index.vue
+const api_uri = {
+    dev: "http://127.0.0.1:5000",
+    prod: "https://api.nhdiscord.com"
+}
+
 // dont forget to set it in main.py aswell
-const authentication_uri = uris.dev
+const authentication_uri = auth_uris.dev
+const current_api = api_uri.dev
+
+provide("api_uri", current_api)
 provide("authentication_uri", authentication_uri)
 const user_info = ref({
 })

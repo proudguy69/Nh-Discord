@@ -61,9 +61,11 @@ def authorize():
     })
     return response
 
-@app.route('/authorize/get')
-def api_get_user():
-    auth_token = request.args.get('token')
-    return jsonify({"success": True})
+@app.route('/dating/entry/form', methods=["POST"])
+def dating_entry_form():
+    print(request.json)
+    return jsonify({'success': True})
+
+
 
 app.run(debug=True)

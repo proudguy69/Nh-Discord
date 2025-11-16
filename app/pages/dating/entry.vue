@@ -50,7 +50,7 @@
             class="flex flex-col gap-1"
             @submit="submit"
             :validate="validate"
-            :state="state"
+            :state="form_state"
             >
                 <UFormField label="Name" name="name" required>
                     <UFieldGroup orientation="vertical" class="w-full" >
@@ -122,8 +122,9 @@ const title = "New Hampshire's first real dating community. Built for authentici
 const description = "Join early, help shape it, and be part of something that actually lasts."
 
 const authentication_uri = inject('authentication_uri')
-const user_info = inject("user_info")
+const current_uri = inject('api_uri')
 
+const user_info = inject("user_info")
 const load_join = ref(false)
 
 const links = ref([
@@ -136,6 +137,8 @@ const links = ref([
 
     }
 ])
+
+const toast = useToast()
 
 const form_state = reactive({
     first: undefined,
@@ -195,8 +198,22 @@ function validate(state) {
     return errors
 }
 
-function submit() {
+async function submit() {
     load_join.value = true
+    const response = await fetch(`${current_uri}/dating/entry/form`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(form_state)
+    })
+    const json_data = await response.json()
+    if (json_data.success) {
+        
+        toast.add({
+            title: 'Form submitted successfully!',
+            description: "Your form was submitted, you will be added to the server automatically when it opens"
+        })
+    }
+    load_join.value = false
 }
 
 </script>

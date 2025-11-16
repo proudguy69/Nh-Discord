@@ -13,12 +13,7 @@ const user_info = inject("user_info")
 
 let data = ref({})
 
-const uris = {
-    dev: "http://127.0.0.1:5000",
-    prod: "https://api.nhdiscord.com"
-}
-
-const current_uri = uris.dev
+const current_uri = inject('api_uri')
 
 onMounted(async () => {
     const code = route.query.code
