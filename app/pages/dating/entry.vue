@@ -14,7 +14,7 @@
 
     </UPage>
 
-
+    <!--If user IS logged in-->
     <UPage v-if="user_info.id">
         
         <UPageHero
@@ -46,33 +46,63 @@
             v-if="true"
             variant="subtle"
             >
-            <UForm class="flex flex-col gap-1" @submit="submit">
-                <UFormField label="Name">
+            <UForm
+            class="flex flex-col gap-1"
+            @submit="submit"
+            :validate="validate"
+            :state="state"
+            >
+                <UFormField label="Name" name="name" required>
                     <UFieldGroup orientation="vertical" class="w-full" >
-                        <UInput placeholder="First"/>
-                        <UInput placeholder="Last"/>
+                        <UInput placeholder="First" v-model="form_state.first"/>
+                        <UInput placeholder="Last" v-model="form_state.last"/>
                     </UFieldGroup>
                 </UFormField>
 
-                <UFormField label="Date of birth" class="w-full">
+                <UFormField label="Date of birth" name="birth" class="w-full" required>
                     <UFieldGroup>
-                        <UInput class="w-11" placeholder="mm"/>
-                        <UInput class="w-11" placeholder="dd"/>
-                        <UInput class="w-13" placeholder="yyyy"/>
+                        <UInput class="w-11" placeholder="mm" v-model="form_state.month"/>
+                        <UInput class="w-11" placeholder="dd" v-model="form_state.day"/>
+                        <UInput class="w-13" placeholder="yyyy" v-model="form_state.year"/>
                     </UFieldGroup>
                 </UFormField>
 
-                <UFormField label="Residential Address" class="w-full">
+                <UFormField label="Residential Address" name="address" class="w-full" required>
                     <UFieldGroup orientation="vertical">
-                        <UInput placeholder="308 Negra Arroyo Lane" />
-                        <UInput placeholder="Albuquerque"/>
-                        <UInput placeholder="NM"/>
-                        <UInput placeholder="87104"/>
+                        <UInput placeholder="308 Negra Arroyo Lane" v-model="form_state.street"/>
+                        <UInput placeholder="Albuquerque" v-model="form_state.city"/>
+                        <UInput placeholder="NM" v-model="form_state.state"/>
+                        <UInput placeholder="87104" v-model="form_state.zip"/>
                     </UFieldGroup>
                 </UFormField>
 
-                <UFormField label="Upload a selfie" help="This is to verify authenticity, you will see this selfie when you enter the server and verify your identiy with the staff" class="w-full">
+                <UFormField
+                label="Upload a selfie"
+                help="This is to verify authenticity, you will see this selfie when you enter the server and verify your identiy with the staff"
+                class="w-full"
+                >
                     <UFileUpload variant="button" />
+                </UFormField>
+
+                <UFormField label="To continue you must agree to" name="policy">
+                    <UCheckbox required v-model="form_state.terms">
+                        <template #label>
+                            <ULink
+                            to="/policy/terms"
+                            >
+                            Terms of service
+                        </ULink>
+                        </template>
+                    </UCheckbox>
+                    <UCheckbox required v-model="form_state.privacy">
+                        <template #label>
+                            <ULink
+                            to="/policy/privacy"
+                            >
+                            Privacy Policy
+                        </ULink>
+                        </template>
+                    </UCheckbox>
                 </UFormField>
                 
                 <UButton class="w-full text-center" icon="i-lucide-arrow-right" variant="solid" label="Join" type="submit" :loading="load_join"/>
@@ -106,6 +136,64 @@ const links = ref([
 
     }
 ])
+
+const form_state = reactive({
+    first: undefined,
+    last: undefined,
+    month: undefined,
+    day: undefined,
+    year: undefined,
+    street: undefined,
+    city: undefined,
+    state: undefined,
+    zip: undefined,
+    terms: undefined,
+    privacy: undefined
+})
+
+function validate(state) {
+    const errors = []
+    if (!form_state.first || !form_state.last) {
+        errors.push({name: 'name', message: 'First and Last name required'})
+    }
+    // Month Validation
+    if (!form_state.month) {
+        errors.push({name: 'birth', message: 'Month is a required feild'})
+    } else if (form_state.month.length != 2) {
+        errors.push({name: 'birth', message: 'Month must be 2 digits'})
+    } else if (!Number(form_state.month)) {
+        errors.push({name: 'birth', message: 'Month must be a number'})
+    } else if (Number(form_state.month) > 12 || Number(form_state.month) < 1) {
+        errors.push({name: 'birth', message: 'Month must be between 1-12'})
+    }
+    // Day Validation
+    if (!form_state.day) {
+        errors.push({name: 'birth', message: 'Day is a required feild'})
+    } else if (form_state.day.length != 2) {
+        errors.push({name: 'birth', message: 'Day must be 2 digits'})
+    } else if (!Number(form_state.day)) {
+        errors.push({name: 'birth', message: 'Day must be a number'})
+    } else if (Number(form_state.day) > 31 || Number(form_state.day) < 1) {
+        errors.push({name: 'birth', message: 'Day must be between 1-31'})
+    }
+    // Year Validation
+    if (!form_state.year) {
+        errors.push({name: 'birth', message: 'Year is a required feild'})
+    } else if (form_state.year.length != 4) {
+        errors.push({name: 'birth', message: 'Year must be 4 digits'})
+    } else if (!Number(form_state.year)) {
+        errors.push({name: 'birth', message: 'Year must be a number'})
+    } else if (Number(form_state.year) > 2025 || Number(form_state.year) < 1925) {
+        errors.push({name: 'birth', message: 'Year must be between 1925 -> 2025'})
+    }
+
+
+    if(!form_state.street | !form_state.city || !form_state.state || !form_state.zip) {
+        errors.push({name: 'address', message: 'Please provide a full address (this will be verified with your ID upon entry)'})
+    }
+
+    return errors
+}
 
 function submit() {
     load_join.value = true
