@@ -36,14 +36,14 @@
         headline="Start here"
         >
             <UEmpty
-            v-if="false"
+            v-if="true"
             title="Still under development"
             description="This section is still under development, please be paitent while we work on this"
             icon="i-lucide-file"
             variant="subtle"
             />
             <UPageCard
-            v-if="true"
+            v-if="false"
             variant="subtle"
             >
             <UForm
